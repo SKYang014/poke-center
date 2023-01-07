@@ -48,7 +48,14 @@ type Query {
   pokemons(username: String): [Pokemon]
   pokemon(_id: ID!): Pokemon
 }
+
+type Mutation {
+    login(email: String!, password: String!): User
+    addUser(username: String!, email: String!, password: String!): User
+  }
 `;
+
+
 
 // export the typeDefs
 module.exports = typeDefs;
