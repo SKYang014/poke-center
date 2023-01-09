@@ -16,6 +16,7 @@
     "bcrypt": "^4.0.1",
     "express": "^4.17.1",
     "graphql": "^16.6.0",
+    "jsonwebtoken": "^9.0.0",
     "mongoose": "^5.9.9",
     "node-fetch": "^3.3.0"
   },
