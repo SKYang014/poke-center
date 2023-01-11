@@ -23,13 +23,13 @@ const userSchema = new Schema(
     },
     gymBadges: {
       type: Number,
-      required: false,
-      trim: true
+      trim: true,
+      default: 0
     },
     pokeDexCompletion: {
       type: Number,
-      required: true,
-      trim: true
+      trim: true,
+      default: 0
     },
     adventureStart: {
       type: Date,
