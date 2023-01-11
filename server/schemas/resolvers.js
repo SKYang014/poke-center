@@ -20,10 +20,12 @@ const resolvers = {
         },
         thoughts: async (parent, { username }) => {
             const params = username ? { username } : {};
+            console.log(params)
             return Thought.find(params).sort({ createdAt: -1 });
         },
         // place this inside of the `Query` nested object right after `thoughts`
         thought: async (parent, { _id }) => {
+            console.log(_id)
             return Thought.findOne({ _id });
         },
         // get all users
@@ -42,16 +44,9 @@ const resolvers = {
                 .populate('thoughts')
                 .populate('currentTeam');
         },
-        pokemons: async (parent, { username }) => {
-            const params = username ? { username } : {};
-            return Pokemon.find(params).sort({ createdAt: -1 });
-        },
-        pokemon: async (parent, { _id }) => {
-            return Pokemon.findOne({ _id });
-        },
-        specificPokemon: async (parent, { pokeDexId }) => {
+        pokemonDetail: async (parent, { pokeDexId }) => {
             const params = pokeDexId ? { pokeDexId } : {};
-            // console.log(pokeDexId)
+            console.log(params)
             return Pokemon.find(params).sort({ species: 1 });
         }
     },

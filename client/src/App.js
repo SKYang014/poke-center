@@ -9,7 +9,7 @@ import NoMatch from './pages/NoMatch';
 import SingleThought from './pages/SingleThought';
 import Profile from './pages/Profile';
 import Signup from './pages/Signup';
-// import SinglePokemon from './pages/SinglePokemon'
+import PokemonDetail from './pages/PokemonDetail'
 
 function App() {
   const httpLink = createHttpLink({
@@ -47,10 +47,10 @@ function App() {
                 path="/thought/:id"
                 element={<SingleThought />}
               />
-              {/* <Route
-                path="/pokemon"
-                element={<SinglePokemon />}
-              /> */}
+              <Route
+                path="/pokemon/:id"
+                element={<PokemonDetail />}
+              />
               <Route
                 path="*"
                 element={<NoMatch />}

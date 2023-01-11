@@ -27,6 +27,10 @@ type Pokemon {
   level: Int
   species: String
   pokeDexId: Int
+  photo: String
+  bigPhoto: String
+  shiny: Boolean
+  description: String
 }
 
 type User {
@@ -53,9 +57,7 @@ type Query {
   user(username: String!): User
   thoughts(username: String): [Thought]
   thought(_id: ID!): Thought
-  pokemons(username: String): [Pokemon]
-  pokemon(_id: ID!): Pokemon
-  specificPokemon(pokeDexId:Int): [Pokemon]
+  pokemonDetail(pokeDexId:Int): [Pokemon]
 }
 
 type Mutation {
