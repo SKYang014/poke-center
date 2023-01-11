@@ -5,10 +5,11 @@ const { faker } = require('@faker-js/faker');
 const db = require('../config/connection');
 const { Thought, User, Pokemon } = require('../models');
 const pokeApi = "https://pokeapi.co/api/v2/pokemon/"
-
+const pokeApiDesc = "https://pokeapi.co/api/v2/pokemon-species/"
 db.once('open', async () => {
   await Thought.deleteMany({});
   await User.deleteMany({});
+  await Pokemon.deleteMany({});
 
   // create user data
   const userData = [];
@@ -48,7 +49,7 @@ db.once('open', async () => {
 
     const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
     const { username, _id: userId } = createdUsers.ops[randomUserIndex];
-
+    const createdAt = faker.date.between('2022-01-01T00:00:00.000Z', '2023-01-01T00:00:00.000Z');
     const createdThought = await Thought.create({ thoughtText, username });
 
     const updatedUser = await User.updateOne(
@@ -78,29 +79,57 @@ db.once('open', async () => {
 
   // create pokemon
   let createdPokemons = [];
-  for (let i = 0; i < 20; i += 1) {
-    const pokeid = faker.mersenne.rand(386, 252);
-    const poke = await fetch(pokeApi + pokeid)
+  for (let i = 0; i < 10; i += 1) {
+
+    //rand poke id generator
+    const pokeDexId = faker.mersenne.rand(386, 252);
+    //first call for desc
+    const descriptionCall = await fetch(pokeApiDesc + pokeDexId)
       .then(function (data) { return data.json(); }
       ).then(function (json) {
-        return json.name;
+        return json.flavor_text_entries[5].flavor_text;
       }
       )
-    const level = faker.mersenne.rand(100, 1);
+    const description = descriptionCall.replace(/\r\n|\r|\n/gi, " ")
 
-    const pokemonName = poke;
+    //second call for general poke info
 
-    const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
-    const { username, _id: userId } = createdUsers.ops[randomUserIndex];
+    let photo = ""
 
-    const createdPokemon = await Pokemon.create({ pokemonName, level, username });
+    const createPokemon = async (poke) => {
 
-    const updatedUser = await User.updateOne(
-      { _id: userId },
-      { $push: { currentTeam: createdPokemon._id } }
-    );
-    console.log(createdPokemon)
-    createdPokemons.push(createdPokemon);
+
+      const level = faker.mersenne.rand(100, 1);
+      const pokemonName = faker.name.lastName();
+      const species = poke.name;
+      const shiny = faker.datatype.boolean();//if true, photo = shiny/special  if false= normal
+      let photo = poke.sprites.front_default
+      if (shiny) {
+        photo = poke.sprites.front_shiny
+      }
+      // maybe use read//update one
+
+      const bigPhoto = poke.sprites.other.dream_world.front_default;
+
+      const randomUserIndex = Math.floor(Math.random() * createdUsers.ops.length);
+      const { username, _id: userId } = createdUsers.ops[randomUserIndex];
+
+      const createdPokemon = await Pokemon.create({ pokemonName, level, username, species, pokeDexId, shiny, photo, bigPhoto, description });
+
+      const updatedUser = await User.updateOne(
+        { _id: userId },
+        { $push: { currentTeam: createdPokemon._id } }
+      );
+      console.log(createdPokemon)
+      createdPokemons.push(createdPokemon);
+    }
+
+    await fetch(pokeApi + pokeDexId)
+      .then(function (data) { return data.json(); }
+      ).then(function (json) {
+        createPokemon(json);
+      }
+      )
   }
 
   console.log('all done!');

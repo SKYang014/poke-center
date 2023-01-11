@@ -25,6 +25,8 @@ type Pokemon {
   pokemonName: String
   username: String
   level: Int
+  species: String
+  pokeDexId: Int
 }
 
 type User {
@@ -53,6 +55,7 @@ type Query {
   thought(_id: ID!): Thought
   pokemons(username: String): [Pokemon]
   pokemon(_id: ID!): Pokemon
+  specificPokemon(pokeDexId:Int): [Pokemon]
 }
 
 type Mutation {
@@ -62,7 +65,7 @@ type Mutation {
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
-    addPokemon(pokemonName: String!, level: Int): Pokemon
+    addPokemon(pokemonName: String!, level: Int!, species: String!, pokeDexId: Int): Pokemon
     removePokemon(pokemonId: ID!):User
     }
     

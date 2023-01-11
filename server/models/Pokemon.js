@@ -17,7 +17,35 @@ const pokemonSchema = new Schema(
             type: Number,
             required: true,
             trim: true,
+        },
+        species: {
+            type: String,
+            required: true,
+            trim: true
+        },
+        pokeDexId: {
+            type: Number,
+            required: true,
+            trim: true
+        },
+        photo: {
+            type: String,
+            trim: true
+        },
+        bigPhoto: {
+            type: String,
+            trim: true
+        },
+        shiny: {
+            type: Boolean,
+            trim: true
+        },
+        description: {
+            type: String,
+            trim: true
         }
+
+
     },
     {
         toJSON: {

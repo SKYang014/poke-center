@@ -49,6 +49,11 @@ const resolvers = {
         pokemon: async (parent, { _id }) => {
             return Pokemon.findOne({ _id });
         },
+        specificPokemon: async (parent, { pokeDexId }) => {
+            const params = pokeDexId ? { pokeDexId } : {};
+            // console.log(pokeDexId)
+            return Pokemon.find(params).sort({ species: 1 });
+        }
     },
     Mutation: {
         addUser: async (parent, args) => {
