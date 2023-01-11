@@ -51,6 +51,9 @@ export const QUERY_USER = gql`
                 pokemonName
                 species
                 level
+                photo
+                shiny
+                description
                 pokeDexId
             }
             thoughts {
@@ -66,3 +69,19 @@ export const QUERY_USER = gql`
 
         }
     }`
+
+export const QUERY_POKEMON = gql`
+query pokemonDetail ($pokeDexId: Int) {
+  pokemonDetail(pokeDexId: $pokeDexId) {
+            _id
+            pokemonName
+            species
+            level
+            photo
+            bigPhoto
+            shiny
+            description
+            pokeDexId
+            username
+  }
+}`
