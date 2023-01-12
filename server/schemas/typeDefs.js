@@ -73,7 +73,7 @@ type Query {
 type Mutation {
     login(email: String!, password: String!): Auth
     addUser(username: String!, email: String!, password: String!, 
-      pokeDexCompletion:Int, gymBadges: Int, adventureStart: String): Auth
+      pokeDexCompletion:Int, gymBadges: Int): Auth
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User

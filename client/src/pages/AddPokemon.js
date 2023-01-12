@@ -2,9 +2,17 @@ import React, { useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { Link } from 'react-router-dom';
 import PokemonList from '../components/PokemonList';
+import { useQuery } from '@apollo/client'
+import { QUERY_USER, QUERY_POKEMONS } from '../utils/queries'
 
 const AddPokemon = () => {
-    const { id: userParam } = useParams();
+    // const { id: userParam } = useParams();
+    const { username: userParam } = useParams();
+    const { loading, data } = useQuery(QUERY_USER, {
+        variables: { username: userParam }
+    });
+    const { loading: load, error: err, data: pokeData } = useQuery(QUERY_POKEMONS);
+
     const [formState, setFormState] = useState(
         {
             username: userParam,
@@ -18,9 +26,14 @@ const AddPokemon = () => {
             description: ''
         }
     );
-    const { loading: load, error: err, data: pokeData } = useQuery(QUERY_POKEMONS, {
-        variables: { pokeDexId: pokeInt }
-    });
+
+    const user = data?.user || {}
+    console.log(user)
+    console.log(pokeData)
+    if (loading) {
+        return <div>Loading...</div>
+    }
+
 
     // update state based on form input changes
     const handleChange = (event) => {
@@ -40,8 +53,10 @@ const AddPokemon = () => {
     return (
         <main className='flex-row justify-center mb-4'>
             <div className='col-12 col-md-6'>
+                {/* <PokemonList pokemon={user.currentTeam}
+                    title="Your Current Team" /> */}
                 <div className='card'>
-                    <h4 className='card-header'>Sign Up</h4>
+                    <h4 className='card-header'>Add A Pokemon to Your Team!</h4>
                     <div className='card-body'>
                         <form onSubmit={handleFormSubmit}>
                             <input
@@ -82,4 +97,4 @@ const AddPokemon = () => {
     );
 };
 
-export default Signup;
+export default AddPokemon;
