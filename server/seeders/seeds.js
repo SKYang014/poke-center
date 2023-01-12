@@ -3,18 +3,60 @@ const fetch = (...args) =>
 const { faker } = require('@faker-js/faker');
 
 const db = require('../config/connection');
-const { Thought, User, Pokemon } = require('../models');
+const { Thought, User, Pokemon, PokeDB } = require('../models');
 const pokeApi = "https://pokeapi.co/api/v2/pokemon/"
 const pokeApiDesc = "https://pokeapi.co/api/v2/pokemon-species/"
 db.once('open', async () => {
   await Thought.deleteMany({});
   await User.deleteMany({});
   await Pokemon.deleteMany({});
+  // await PokeDB.deleteMany({});
+
+  for (let i = 252; i < 386; i++) {
+
+    let pokeDexId = i
+    const pokeDesc = (id, cb) => {
+      fetch(pokeApiDesc + id)
+        .then(res => res.json())
+        .then(json => {
+          cb(json.flavor_text_entries[5].flavor_text)
+        })
+    }
+    const loadPokemon = (id, cb) => {
+      fetch(pokeApi + id)
+        .then(res => res.json())
+        .then(data => {
+          cb(data)
+        })
+    }
+
+
+    pokeDesc(pokeDexId, (poke) => {
+      // console.log(poke.flavor_text_entries[5].flavor_text)
+
+      let description = poke.replace(/\r\n|\r|\n/gi, " ");
+      loadPokemon(pokeDexId, async (pokemon) => {
+
+        // const description = await descriptionCall
+        // .replace(/\r\n|\r|\n/gi, " ")
+
+        const species = pokemon.name;
+        const photo = pokemon.sprites.front_default
+        const shinyPhoto = pokemon.sprites.front_shiny
+        const bigPhoto = pokemon.sprites.other.dream_world.front_default;
+
+
+        const createdPoko = await PokeDB.create({ species, photo, shinyPhoto, bigPhoto, description, pokeDexId })
+        console.log(createdPoko)
+      })
+      return poke
+    })
+  }
 
   // create user data
   const userData = [];
 
-  for (let i = 0; i < 10; i += 1) {
+  for (let i = 0; i < 20; i += 1) {
     const username = faker.internet.userName();
     const email = faker.internet.email(username);
     const password = faker.internet.password();
@@ -79,7 +121,7 @@ db.once('open', async () => {
 
   // create pokemon
   let createdPokemons = [];
-  for (let i = 0; i < 10; i += 1) {
+  for (let i = 0; i < 50; i += 1) {
 
     //rand poke id generator
     const pokeDexId = faker.mersenne.rand(386, 252);
@@ -131,6 +173,11 @@ db.once('open', async () => {
       }
       )
   }
+
+
+
+
+
 
   console.log('all done!');
   process.exit(0);

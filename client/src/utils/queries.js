@@ -85,3 +85,15 @@ query pokemonDetail ($pokeDexId: Int) {
             username
   }
 }`
+
+export const QUERY_POKEMONS = gql`
+query pokemons ($pokeDexId: Int){
+  pokemons(pokeDexId: $pokeDexId) {
+            species
+            photo
+            bigPhoto
+            description
+            pokeDexId
+  }
+
+}`

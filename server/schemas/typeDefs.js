@@ -33,6 +33,15 @@ type Pokemon {
   description: String
 }
 
+type PokemonDb {
+  _id:ID
+  species: String
+  pokeDexId: Int
+  photo: String
+  bigPhoto: String
+  description: String
+}
+
 type User {
   _id: ID
   username: String
@@ -58,6 +67,7 @@ type Query {
   thoughts(username: String): [Thought]
   thought(_id: ID!): Thought
   pokemonDetail(pokeDexId:Int): [Pokemon]
+  pokemons(pokeDexId: Int):[PokemonDb]
 }
 
 type Mutation {

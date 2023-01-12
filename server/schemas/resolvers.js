@@ -1,4 +1,4 @@
-const { User, Thought, Pokemon } = require('../models');
+const { User, Thought, Pokemon, PokeDB } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 const { signToken } = require('../utils/auth');
 
@@ -48,6 +48,10 @@ const resolvers = {
             const params = pokeDexId ? { pokeDexId } : {};
             console.log(params)
             return Pokemon.find(params).sort({ species: 1 });
+        },
+        pokemons: async (parent, { pokeDexId }) => {
+            const params = pokeDexId ? { pokeDexId } : {};
+            return PokeDB.find(params)
         }
     },
     Mutation: {
