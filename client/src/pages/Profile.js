@@ -27,7 +27,7 @@ const Profile = () => {
   if (!user?.username) {
     return (
       <h4>
-        You need to be logged in to see this page!
+        You need to be logged in or signup to see this page!
       </h4>
     )
   }
