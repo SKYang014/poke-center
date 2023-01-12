@@ -97,3 +97,53 @@ query pokemons ($pokeDexId: Int){
   }
 
 }`
+
+export const QUERY_ME = gql`{
+    me {
+        _id
+        username
+        email
+        friendCount
+        pokeDexCompletion
+        gymBadges
+        thoughts{
+            _id
+            thoughtText
+            createdAt
+            reactionCount
+            reactions {
+                _id
+                createdAt
+                reactionBody
+                username
+            }
+        }
+        friends {
+            _id
+            username
+        }
+        currentTeam{
+            _id
+            pokemonName
+            species
+            pokeDexId
+            description
+            photo
+            shiny
+            bigPhoto
+        }
+    }
+}`
+
+export const QUERY_ME_BASIC = gql`{
+    me {
+        _id
+        username
+        email
+        friendCount
+        friends {
+            _id
+            username
+        }
+    }
+}`

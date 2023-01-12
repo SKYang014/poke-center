@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 
 const PokemonList = ({ pokemon, title }) => {
     if (!pokemon.length) {
-        return <h3>No Pokemon in their team yet!</h3>;
+        return <h3>No Pokemon Yet!</h3>;
     }
     // console.log(pokemon)
 

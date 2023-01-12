@@ -15,7 +15,7 @@ const PokemonDetail = () => {
     const { loading: load, error: err, data: pokeData } = useQuery(QUERY_POKEMONS, {
         variables: { pokeDexId: pokeInt }
     });
-    console.log(pokeData)
+    // console.log(pokeData)
 
     // console.log(data)
     const pokemon = data?.pokemonDetail || [];
@@ -27,7 +27,7 @@ const PokemonDetail = () => {
         return `error ${error.message}`
     }
 
-    console.log(pokeData.pokemons.length)
+    // console.log(pokeData.pokemons.length)
     return (
         <div>
             {pokeData.pokemons.length > 0 ?
