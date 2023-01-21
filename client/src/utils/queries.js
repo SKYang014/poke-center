@@ -91,6 +91,7 @@ query pokemons ($pokeDexId: Int){
   pokemons(pokeDexId: $pokeDexId) {
             species
             photo
+            shinyPhoto
             bigPhoto
             description
             pokeDexId
