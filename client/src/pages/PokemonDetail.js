@@ -34,7 +34,8 @@ const PokemonDetail = () => {
                 <div>
                     <h2>{pokeData.pokemons[0].species}</h2>
                     <div>
-                        <img src={`${pokeData.pokemons[0].bigPhoto}`} alt={`a ${pokeData.pokemons.species}`} />
+                        <img src={`${pokeData.pokemons[0].bigPhoto}`}
+                            alt={`a ${pokeData.pokemons.species}`} />
                         <p>
                             {pokeData.pokemons[0].description}
                         </p>
@@ -50,7 +51,10 @@ const PokemonDetail = () => {
                     {pokemon.map(poke => (
                         <Link to={`/profile/${poke.username}`}>
                             <div key={poke._id} className="card mb-3">
-                                <p>{poke.pokemonName} the {poke.shiny ? (<span className="text-warning">shiny</span>) : ''} {poke.species}</p>
+                                <p>{poke.pokemonName} the {poke.shiny ?
+                                    (<span className="text-warning">shiny</span>) : ''}
+                                    {poke.species}
+                                </p>
                                 <img src={`${poke.photo}`} alt={`a ${poke.species}`} />
                                 <p>Trainer {poke.username}</p>
                             </div>

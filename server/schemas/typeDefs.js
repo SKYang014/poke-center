@@ -40,6 +40,7 @@ type PokemonDb {
   photo: String
   bigPhoto: String
   description: String
+  shinyPhoto: String
 }
 
 type User {

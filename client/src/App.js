@@ -17,7 +17,7 @@ import AddPokemon from './pages/AddPokemon'
 import { parseHeaders } from '@apollo/client/link/http/parseAndCheckHttpResponse';
 function App() {
   const httpLink = createHttpLink({
-    uri: '/graphql',
+    uri: "/graphql",
   });
 
   const authLink = setContext((_, { headers }) => {

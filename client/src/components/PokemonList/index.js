@@ -1,9 +1,11 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const PokemonList = ({ pokemon, title }) => {
+const PokemonList = ({ pokemon, title, removefunc }) => {
     if (!pokemon.length) {
-        return <h3>No Pokemon Yet!</h3>;
+        return <div>
+            <h3>No Pokemon Yet!</h3>;
+        </div>
     }
     // console.log(pokemon)
 
@@ -34,6 +36,7 @@ const PokemonList = ({ pokemon, title }) => {
                                 </p>
                             </Link>
                         </div>
+                        <button onClick={() => removefunc(poke._id)}>remove</button>
                     </div>
                 ))}
         </div>

@@ -1,7 +1,6 @@
 {
   "name": "mern-server",
   "version": "1.0.0",
-  "description": "",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
@@ -24,5 +23,6 @@
   "devDependencies": {
     "@faker-js/faker": "^7.6.0",
     "nodemon": "^2.0.3"
-  }
+  },
+  "description": ""
 }

@@ -21,7 +21,7 @@ const resolvers = {
         thoughts: async (parent, { username }) => {
             const params = username ? { username } : {};
             console.log(params)
-            return Thought.find(params).sort({ createdAt: -1 });
+            return Thought.find(params).sort({ createdAt: 1 });
         },
         // place this inside of the `Query` nested object right after `thoughts`
         thought: async (parent, { _id }) => {
