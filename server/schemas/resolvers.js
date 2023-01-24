@@ -118,6 +118,7 @@ const resolvers = {
                     { $pull: { currentTeam: args.pokemonId } },
                     { new: true }
                 ).populate('currentTeam');
+                const deletedPoke = await Pokemon.deleteOne({ _id: args.pokemonId })
                 // const pokemon = await Pokemon.create({ ...args, username: context.user.username });
 
                 return changedUser;

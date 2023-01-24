@@ -107,6 +107,7 @@ export const QUERY_ME = gql`{
         friendCount
         pokeDexCompletion
         gymBadges
+        adventureStart
         thoughts{
             _id
             thoughtText
@@ -132,6 +133,7 @@ export const QUERY_ME = gql`{
             photo
             shiny
             bigPhoto
+            level
         }
     }
 }`

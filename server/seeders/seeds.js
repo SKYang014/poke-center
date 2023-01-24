@@ -10,47 +10,45 @@ db.once('open', async () => {
   await Thought.deleteMany({});
   await User.deleteMany({});
   await Pokemon.deleteMany({});
-  // await PokeDB.deleteMany({});
+  await PokeDB.deleteMany({});
 
-  for (let i = 252; i < 386; i++) {
+  if (!PokeDB) {
+    for (let i = 252; i < 386; i++) {
 
-    let pokeDexId = i
-    const pokeDesc = (id, cb) => {
-      fetch(pokeApiDesc + id)
-        .then(res => res.json())
-        .then(json => {
-          cb(json.flavor_text_entries[5].flavor_text)
+      let pokeDexId = i
+      const pokeDesc = (id, cb) => {
+        fetch(pokeApiDesc + id)
+          .then(res => res.json())
+          .then(json => {
+            cb(json.flavor_text_entries[5].flavor_text)
+          })
+      }
+      const loadPokemon = (id, cb) => {
+        fetch(pokeApi + id)
+          .then(res => res.json())
+          .then(data => {
+            cb(data)
+          })
+      }
+
+
+      pokeDesc(pokeDexId, (poke) => {
+
+        let description = poke.replace(/\r\n|\r|\n/gi, " ");
+        loadPokemon(pokeDexId, async (pokemon) => {
+
+          const species = pokemon.name;
+          const photo = pokemon.sprites.front_default
+          const shinyPhoto = pokemon.sprites.front_shiny
+          const bigPhoto = pokemon.sprites.other.dream_world.front_default;
+
+
+          const createdPoko = await PokeDB.create({ species, photo, shinyPhoto, bigPhoto, description, pokeDexId })
+          // console.log(createdPoko)
         })
-    }
-    const loadPokemon = (id, cb) => {
-      fetch(pokeApi + id)
-        .then(res => res.json())
-        .then(data => {
-          cb(data)
-        })
-    }
-
-
-    pokeDesc(pokeDexId, (poke) => {
-      // console.log(poke.flavor_text_entries[5].flavor_text)
-
-      let description = poke.replace(/\r\n|\r|\n/gi, " ");
-      loadPokemon(pokeDexId, async (pokemon) => {
-
-        // const description = await descriptionCall
-        // .replace(/\r\n|\r|\n/gi, " ")
-
-        const species = pokemon.name;
-        const photo = pokemon.sprites.front_default
-        const shinyPhoto = pokemon.sprites.front_shiny
-        const bigPhoto = pokemon.sprites.other.dream_world.front_default;
-
-
-        const createdPoko = await PokeDB.create({ species, photo, shinyPhoto, bigPhoto, description, pokeDexId })
-        console.log(createdPoko)
+        return poke
       })
-      return poke
-    })
+    }
   }
 
   // create user data

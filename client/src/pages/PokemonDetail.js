@@ -29,37 +29,40 @@ const PokemonDetail = () => {
 
     // console.log(pokeData.pokemons.length)
     return (
-        <div>
+        <div >
             {pokeData.pokemons.length > 0 ?
-                <div>
-                    <h2>{pokeData.pokemons[0].species}</h2>
-                    <div>
-                        <img src={`${pokeData.pokemons[0].bigPhoto}`}
-                            alt={`a ${pokeData.pokemons.species}`} />
-                        <p>
-                            {pokeData.pokemons[0].description}
-                        </p>
-                    </div>
+                <div className='flex-column justify-center align-center'>
+                    <h1>{pokeData.pokemons[0].species}</h1>
+
+                    <img src={`${pokeData.pokemons[0].bigPhoto}`}
+                        alt={`a ${pokeData.pokemons.species}`} />
+                    <p>
+                        {pokeData.pokemons[0].description}
+                    </p>
+
                 </div>
                 :
                 <div> Only Hoen Region Pokemon, Sorry! </div>}
 
 
             {pokemon.length ?
-                <div>
+                <div >
                     Trainers with {pokemon[0].species}s near you:
-                    {pokemon.map(poke => (
-                        <Link to={`/profile/${poke.username}`}>
-                            <div key={poke._id} className="card mb-3">
-                                <p>{poke.pokemonName} the {poke.shiny ?
-                                    (<span className="text-warning">shiny</span>) : ''}
-                                    {poke.species}
-                                </p>
-                                <img src={`${poke.photo}`} alt={`a ${poke.species}`} />
-                                <p>Trainer {poke.username}</p>
-                            </div>
-                        </Link>
-                    ))}
+                    <div className='flex-row'>
+
+                        {pokemon.map(poke => (
+                            <Link to={`/profile/${poke.username}`}>
+                                <div key={poke._id} className="card m-3 p-2">
+                                    <p className='card-header'>{poke.pokemonName} the {poke.shiny ?
+                                        (<span className="text-warning">shiny </span>) : ''}
+                                        {poke.species} lv:{poke.level}
+                                    </p>
+                                    <img src={`${poke.photo}`} alt={`a ${poke.species}`} />
+                                    <p className='card-body'>Trainer {poke.username}</p>
+                                </div>
+                            </Link>
+                        ))}
+                    </div>
                 </div>
                 :
                 <div> No nearby trainers with this pokemon!</div>}
