@@ -78,7 +78,9 @@ type Mutation {
     addThought(thoughtText: String!): Thought
     addReaction(thoughtId: ID!, reactionBody: String!): Thought
     addFriend(friendId: ID!): User
-    addPokemon(pokemonName: String!, level: Int!, species: String!, pokeDexId: Int): Pokemon
+    addPokemon(pokemonName: String!, level: Int!, species: String!, 
+      pokeDexId: Int!, username: String!, photo:String!, bigPhoto: String!, 
+      shiny: Boolean, description: String!): Pokemon
     removePokemon(pokemonId: ID!):User
     }
     

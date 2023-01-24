@@ -77,7 +77,8 @@ const AddPokemon = () => {
             await addPokemon({
                 variables: { ...formState }
             });
-            // Auth.login(data.addPokemon.token);
+            alert("pokemon added")
+            console.log(formState)
         } catch (e) {
             console.error(e);
         }
@@ -102,12 +103,13 @@ const AddPokemon = () => {
     }
 
 
+
     if (loading || load) {
         return <div>Loading...</div>
     }
     return (
         <main className='flex-row justify-center mb-4'>
-            <div className='col-12 col-md-6'>
+            <div className='col-12 col-md-12'>
                 {/* <PokemonList pokemon={user.currentTeam}
                     title="Your Current Team" /> */}
                 <div className='card'>
@@ -149,7 +151,8 @@ const AddPokemon = () => {
                             </button>
                             <PokeDex shinyCheck={formState.shiny}
                                 pokeInfo={pokeData}
-                                parentCallBack={handlePokeChoose} />
+                                parentCallBack={handlePokeChoose}
+                                selected={formState.pokeDexId} />
                         </form>
                     </div>
                 </div>

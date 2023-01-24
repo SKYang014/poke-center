@@ -15,6 +15,7 @@ import Signup from './pages/Signup';
 import PokemonDetail from './pages/PokemonDetail'
 import AddPokemon from './pages/AddPokemon'
 import { parseHeaders } from '@apollo/client/link/http/parseAndCheckHttpResponse';
+
 function App() {
   const httpLink = createHttpLink({
     uri: "/graphql",

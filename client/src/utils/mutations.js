@@ -69,14 +69,10 @@ export const ADD_REACTION = gql`
 `;
 
 export const ADD_POKEMON = gql`
-mutation addPokemon($pokemonName: String!, $level: Int!, $species: String!, $pokeDexId: Int) {
-  addPokemon(pokemonName: $pokemonName, level: $level, species: $species, pokeDexId: $pokeDexId) {
-    _id
+mutation AddPokemon($pokemonName: String!, $level: Int!, $species: String!, $pokeDexId: Int!, $username: String!, $photo:String!, $bigPhoto: String!, $shiny: Boolean, $description: String!) {
+  addPokemon(pokemonName: $pokemonName, level: $level, species: $species, pokeDexId:$pokeDexId,  username:$username, photo:$photo, bigPhoto:$bigPhoto, shiny:$shiny, description: $description) {
     pokemonName
-    username
     level
-    species
-    pokeDexId
   }
 }`
 

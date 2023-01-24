@@ -1,13 +1,14 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-
+import { useParams, Link } from 'react-router-dom';
+import Auth from '../../utils/auth';
 const PokemonList = ({ pokemon, title, removefunc }) => {
+    const { username: userParam } = useParams();
     if (!pokemon.length) {
         return <div>
-            <h3>No Pokemon Yet!</h3>;
+            <h3>No Pokemon Yet!</h3>
         </div>
     }
-    // console.log(pokemon)
+    console.log(pokemon)
 
     return (
         <div>
@@ -23,7 +24,9 @@ const PokemonList = ({ pokemon, title, removefunc }) => {
                             >
                                 {poke.pokemonName} the {poke.shiny ? (<span className="text-warning">shiny</span>) : ''} {poke.species}
                             </Link>{' '}
-
+                            {Auth.loggedIn() && !userParam ?
+                                <button className="btn ml-auto" onClick={() => removefunc(poke._id)}>remove</button> :
+                                ""}
                         </p>
                         <div className="card-body">
                             <Link to={`/pokemon/${poke.pokeDexId}`}>
@@ -36,7 +39,6 @@ const PokemonList = ({ pokemon, title, removefunc }) => {
                                 </p>
                             </Link>
                         </div>
-                        <button onClick={() => removefunc(poke._id)}>remove</button>
                     </div>
                 ))}
         </div>
