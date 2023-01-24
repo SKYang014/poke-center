@@ -36,13 +36,21 @@ https://pokenav-online.onrender.com
 
 ## Screenshots
 
+Homepage, not logged in:
 ![Home Page, not logged in](./readme_photos/1.JPG)
+Signup
 ![Sign Up](./readme_photos/2.JPG)
+Login
 ![Login](./readme_photos/3.JPG)
+Home Page, logged in
 ![Home Page, logged in](./readme_photos/4.JPG)
+Profile
 ![Profile](./readme_photos/5.JPG)
+Add Pokemon
 ![Add Pokemon](./readme_photos/6.JPG)
+My Profile
 ![My Profile](./readme_photos/7.JPG)
+Pokemon Detail
 ![Pokemon Detail](./readme_photos/8.JPG)
 
 ## Acknowledgements
