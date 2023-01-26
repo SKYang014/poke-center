@@ -1,13 +1,13 @@
 import React from 'react'
 import { Link } from 'react-router-dom';
 
-const PokeDex = ({ pokeInfo, shinyCheck, parentCallBack, selected, newWin }) => {
-    // const handleClick = (id) => {
-    //     // event.preventDefault();
-    //     window.open(`/pokemon/${id}`)
-    //     // window.open(`https://google.com`)
-    //     // return false
-    // }
+const PokeDex = ({ pokeInfo, shinyCheck, parentCallBack, selected }) => {
+    const handleClick = (id) => {
+        //     // event.preventDefault();
+        window.open(`/pokemon/${id}`)
+        //     // window.open(`https://google.com`)
+        //     // return false
+    }
     return (
         <div className='flex-row justify-space-between w-100'>
             {pokeInfo &&
@@ -26,7 +26,7 @@ const PokeDex = ({ pokeInfo, shinyCheck, parentCallBack, selected, newWin }) => 
                                     (<img src={`${poke.shinyPhoto}`} alt={`a shiny ${poke.species}`} />) :
                                     (<img src={`${poke.photo}`} alt={`a ${poke.species}`} />)
                                 }
-                                <div onClick={() => newWin(poke.pokeDexId)} >
+                                <div onClick={() => handleClick(poke.pokeDexId)} >
                                     <button className='btn'>Pokemon Info</button>
                                 </div>
                             </div>

@@ -36,22 +36,6 @@ const Signup = () => {
   };
 
   const testLogin = async event => {
-    // setFormState({
-    //   username: "tester",
-    //   email: "test@test.com",
-    //   password: "test12345",
-    //   gymBadges: 1,
-    //   pokeDexCompletion: 55
-    // })
-    // try {
-    //   // execute addUser mutation and pass in variable data from form
-    //   const { data } = await login({
-    //     variables: { ...formState }
-    //   });
-    //   Auth.login(data.login.token);
-    // } catch (e) {
-    //   console.error(e);
-    // }
     window.location.assign('/login')
   }
 
@@ -93,20 +77,20 @@ const Signup = () => {
                 value={formState.password}
                 onChange={handleChange}
               />
-              Current Gym Badges:
+              Current Gym Badges out of 8:
               <input
                 className='form-input'
-                placeholder='Your Current Gymbadges'
+                placeholder='0/8'
                 name='gymBadges'
                 type='number'
                 id='gymbadges'
                 value={formState.gymBadges}
                 onChange={handleChange}
               />
-              Current PokeDex Completion
+              Current PokeDex Completion out of 202:
               <input
                 className='form-input'
-                placeholder='Your Total PokeDex Entries'
+                placeholder='0/202'
                 name='pokeDexCompletion'
                 type='number'
                 id='pokeDexCompletion'

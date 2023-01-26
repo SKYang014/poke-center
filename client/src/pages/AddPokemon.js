@@ -102,12 +102,12 @@ const AddPokemon = () => {
         console.log(formState)
     }
 
-    const handleClick = (id) => {
-        // event.preventDefault();
-        window.open(`/pokemon/${id}`)
-        // window.open(`https://google.com`)
-        // return false
-    }
+    // const handleClick = (id) => {
+    //     // event.preventDefault();
+    //     window.open(`/pokemon/${id}`)
+    //     // window.open(`https://google.com`)
+    //     // return false
+    // }
 
     if (loading || load) {
         return <div>Loading...</div>
@@ -158,7 +158,7 @@ const AddPokemon = () => {
                                 pokeInfo={pokeData}
                                 parentCallBack={handlePokeChoose}
                                 selected={formState.pokeDexId}
-                                newWin={handleClick} />
+                            />
                         </form>
                     </div>
                 </div>
