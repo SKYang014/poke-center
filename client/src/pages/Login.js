@@ -17,10 +17,40 @@ const Login = (props) => {
     });
   };
 
+  const testData = () => {
+    setFormState({
+      email: "test1@test.com",
+      password: "test12345"
+    })
+  }
+
   // submit form
   const handleFormSubmit = async (event) => {
     event.preventDefault();
 
+    // if (entry === "tester") {
+    //   setFormState({
+    //     email: "test@test.com",
+    //     password: "test12345"
+    //   })
+    //   try {
+    //     const { data } = await login({
+    //       variables: { ...formState }
+    //     });
+    //     console.log(data)
+    //     Auth.login(data.login.token)
+    //   }
+    //   catch (e) {
+    //     console.log(e)
+    //   }
+    //   // clear form values
+    //   setFormState({
+    //     email: '',
+    //     password: '',
+    //   });
+
+    // }
+    // else {
     try {
       const { data } = await login({
         variables: { ...formState }
@@ -36,6 +66,7 @@ const Login = (props) => {
       email: '',
       password: '',
     });
+    // }
   };
 
   return (
@@ -63,8 +94,11 @@ const Login = (props) => {
                 value={formState.password}
                 onChange={handleChange}
               />
-              <button className='btn d-block w-100' type='submit'>
+              <button className='btn d-block w-100' type="submit" >
                 Submit
+              </button>
+              <button className='btn d-block w-100' onClick={testData}>
+                Tester Login
               </button>
             </form>
             {error && <div >Login Failed</div>}

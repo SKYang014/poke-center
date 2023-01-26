@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import PokeDex from '../components/PokeDex';
 import { useMutation, useQuery } from '@apollo/client'
 import { QUERY_ME, QUERY_POKEMONS } from '../utils/queries'
@@ -15,7 +15,8 @@ const AddPokemon = () => {
     });
     //query all poko database for selection
     const { loading: load, error: err, data: pokeData } = useQuery(QUERY_POKEMONS);
-    const [addPokemon] = useMutation(ADD_POKEMON)
+    //post to current team
+    const [addPoke] = useMutation(ADD_POKEMON)
     //initialize form data
     const [formState, setFormState] = useState(
         {
@@ -35,9 +36,9 @@ const AddPokemon = () => {
     if (Auth.loggedIn() && Auth.getProfile().data.username === userParam) {
         return <Navigate to="/addpokemon" />
     }
-    const user = data?.user || {}
-    // console.log(user._id)
-    // console.log(pokeData)
+    //displays user's current team
+    // const user = data?.user || {}
+
     if (loading) {
         return <div>Loading...</div>
     }
@@ -68,17 +69,18 @@ const AddPokemon = () => {
 
 
     // submit form (notice the async!)
-    const handleFormSubmit = async event => {
+    const handleFormSubmit = async (event) => {
         event.preventDefault();
 
         // use try/catch instead of promises to handle errors
         try {
             // execute addUser mutation and pass in variable data from form
-            await addPokemon({
+            await addPoke({
                 variables: { ...formState }
             });
             alert("pokemon added")
-            console.log(formState)
+            // console.log(formState)
+            // window.location.assign('/profile')
         } catch (e) {
             console.error(e);
         }
@@ -86,9 +88,7 @@ const AddPokemon = () => {
 
     //handles user choosing a pokemon
     function handlePokeChoose(pokeDexId, photo, description, bigPhoto, species) {
-        // refetch({ pokeDexId: pokeDexId })
 
-        // const pokePhoto = formState.shiny ? pokeData.shinyPhoto : pokeData.photo
         setFormState(prevState => {
             return {
                 ...prevState,
@@ -102,7 +102,12 @@ const AddPokemon = () => {
         console.log(formState)
     }
 
-
+    const handleClick = (id) => {
+        // event.preventDefault();
+        window.open(`/pokemon/${id}`)
+        // window.open(`https://google.com`)
+        // return false
+    }
 
     if (loading || load) {
         return <div>Loading...</div>
@@ -152,7 +157,8 @@ const AddPokemon = () => {
                             <PokeDex shinyCheck={formState.shiny}
                                 pokeInfo={pokeData}
                                 parentCallBack={handlePokeChoose}
-                                selected={formState.pokeDexId} />
+                                selected={formState.pokeDexId}
+                                newWin={handleClick} />
                         </form>
                     </div>
                 </div>

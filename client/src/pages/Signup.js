@@ -1,21 +1,16 @@
 import React, { useState } from 'react';
 import { useMutation } from '@apollo/client';
-import { ADD_USER } from '../utils/mutations';
+import { ADD_USER, LOGIN_USER } from '../utils/mutations';
 import Auth from '../utils/auth'
 
 const Signup = () => {
   const [formState, setFormState] = useState({ username: '', email: '', password: '', gymBadges: 0, pokeDexCompletion: 0 });
   const [addUser, { error }] = useMutation(ADD_USER)
-
+  const [login, { error: err }] = useMutation(LOGIN_USER)
 
   // update state based on form input changes
   const handleChange = (event) => {
     const { name, value, type } = event.target;
-
-    // if ([name] === "gymBadges") {
-    //   parseInt(value)
-    //   console.log("here")
-    // }
 
 
     setFormState({
@@ -39,6 +34,26 @@ const Signup = () => {
       console.error(e);
     }
   };
+
+  const testLogin = async event => {
+    // setFormState({
+    //   username: "tester",
+    //   email: "test@test.com",
+    //   password: "test12345",
+    //   gymBadges: 1,
+    //   pokeDexCompletion: 55
+    // })
+    // try {
+    //   // execute addUser mutation and pass in variable data from form
+    //   const { data } = await login({
+    //     variables: { ...formState }
+    //   });
+    //   Auth.login(data.login.token);
+    // } catch (e) {
+    //   console.error(e);
+    // }
+    window.location.assign('/login')
+  }
 
 
   return (
@@ -101,6 +116,7 @@ const Signup = () => {
               <button className='btn d-block w-100' type='submit'>
                 Submit
               </button>
+              <button className='btn d-block w-100' type='submit' onClick={testLogin}>Tester Login</button>
             </form>
             {error && <div>Sign up failed</div>}
           </div>

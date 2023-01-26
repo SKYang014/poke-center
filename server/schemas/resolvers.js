@@ -51,7 +51,7 @@ const resolvers = {
         },
         pokemons: async (parent, { pokeDexId }) => {
             const params = pokeDexId ? { pokeDexId } : {};
-            return PokeDB.find(params)
+            return PokeDB.find(params).sort({ pokeDexId: 1 })
         }
     },
     Mutation: {
