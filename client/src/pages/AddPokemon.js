@@ -67,7 +67,6 @@ const AddPokemon = () => {
         })
     }
 
-
     // submit form (notice the async!)
     const handleFormSubmit = async (event) => {
         event.preventDefault();
@@ -102,21 +101,12 @@ const AddPokemon = () => {
         console.log(formState)
     }
 
-    // const handleClick = (id) => {
-    //     // event.preventDefault();
-    //     window.open(`/pokemon/${id}`)
-    //     // window.open(`https://google.com`)
-    //     // return false
-    // }
-
     if (loading || load) {
         return <div>Loading...</div>
     }
     return (
         <main className='flex-row justify-center mb-4'>
             <div className='col-12 col-md-12'>
-                {/* <PokemonList pokemon={user.currentTeam}
-                    title="Your Current Team" /> */}
                 <div className='card'>
                     <h4 className='card-header'>Add A Pokemon to Your Team!</h4>
                     <div className='card-body'>
