@@ -79,7 +79,7 @@ const AddPokemon = () => {
             });
             alert("pokemon added")
             // console.log(formState)
-            // window.location.assign('/profile')
+            window.location.assign('/profile')
         } catch (e) {
             console.error(e);
         }

@@ -2,8 +2,9 @@ import React from 'react'
 import { Link } from 'react-router-dom';
 
 const PokeDex = ({ pokeInfo, shinyCheck, parentCallBack, selected }) => {
-    const handleClick = (id) => {
-        //     // event.preventDefault();
+    const handleClick = (id, event) => {
+        event.preventDefault();
+        event.stopPropagation();
         window.open(`/pokemon/${id}`)
         //     // window.open(`https://google.com`)
         //     // return false
@@ -26,8 +27,9 @@ const PokeDex = ({ pokeInfo, shinyCheck, parentCallBack, selected }) => {
                                     (<img src={`${poke.shinyPhoto}`} alt={`a shiny ${poke.species}`} />) :
                                     (<img src={`${poke.photo}`} alt={`a ${poke.species}`} />)
                                 }
-                                <div onClick={() => handleClick(poke.pokeDexId)} >
-                                    <button className='btn'>Pokemon Info</button>
+                                <div  >
+                                    <button type="default" className='btn' onClick={(event) => handleClick(poke.pokeDexId, event)}>
+                                        Pokemon Info</button>
                                 </div>
                             </div>
                         </div>
