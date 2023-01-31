@@ -10,7 +10,7 @@ const Header = () => {
   return (
     <header className="bg-secondary mb-4 py-2 flex-row align-center">
       <div className="container flex-row justify-space-between-lg justify-center align-center">
-        <Link to="/">
+        <Link to="/home">
           <h1>PokéNav Online</h1>
         </Link>
 
@@ -18,7 +18,7 @@ const Header = () => {
           {Auth.loggedIn() ?
             (<>
               <Link to='/profile'>Me</Link>
-              <a href='/' onClick={logout}>Logout</a>
+              <a href='/home' onClick={logout}>Logout</a>
             </>)
             :
             (<>

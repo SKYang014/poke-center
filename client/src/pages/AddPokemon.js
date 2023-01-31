@@ -77,7 +77,7 @@ const AddPokemon = () => {
             await addPoke({
                 variables: { ...formState }
             });
-            alert("pokemon added")
+            // alert("pokemon added")
             // console.log(formState)
             window.location.assign('/profile')
         } catch (e) {
