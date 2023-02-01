@@ -28,7 +28,7 @@ const Landing = () => {
                     <p className='m-3'>Share your thoughts and react to your friend's posts!</p>
                 </div>
                 <div className='card m-2 w-25'>
-                    <h3 className='card-header'>Mange your Team!</h3>
+                    <h3 className='card-header'>Manage your Team!</h3>
                     <p className='m-3'>Create and adjust your team so everyone knows who's on your team!</p>
                 </div>
                 <div className='card m-2 w-25'>
