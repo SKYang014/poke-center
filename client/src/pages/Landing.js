@@ -21,17 +21,17 @@ const Landing = () => {
 
                 <img src={`${data.pokemons[randNum].bigPhoto}`} className="m-3" />
             </div>
-            <div className='flex flex-row justify-center'>
+            <div className='flex-row justify-center '>
 
-                <div className='card m-2 w-25'>
+                <div className='card m-2 col-sm-3'>
                     <h3 className='card-header'>Share Posts!</h3>
                     <p className='m-3'>Share your thoughts and react to your friend's posts!</p>
                 </div>
-                <div className='card m-2 w-25'>
+                <div className='card m-2 col-sm-3'>
                     <h3 className='card-header'>Manage your Team!</h3>
                     <p className='m-3'>Create and adjust your team so everyone knows who's on your team!</p>
                 </div>
-                <div className='card m-2 w-25'>
+                <div className='card m-2 col-sm-3'>
                     <h3 className='card-header'>Add friends!</h3>
                     <p className='m-3'>Keep in touch with other trainers by adding them to your friends list! </p>
                 </div>
