@@ -14,6 +14,10 @@
   --spacing-five: calc(1rem * 3);
 }
 
+.landingImg{
+  max-width:80vw
+}
+
 * {
   box-sizing: border-box;
 }

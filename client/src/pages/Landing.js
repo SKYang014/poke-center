@@ -19,7 +19,7 @@ const Landing = () => {
             <div className='flex flex-row justify-center'>
                 {/* <img src={`${data.pokemons[randNum2].bigPhoto}`} className="" /> */}
 
-                <img src={`${data.pokemons[randNum].bigPhoto}`} className="m-3" />
+                <img src={`${data.pokemons[randNum].bigPhoto}`} className="m-3 landingImg" />
             </div>
             <div className='flex-row justify-center '>
 
